@@ -5,11 +5,16 @@
   <h3><%= entry["title"] %></h3>
   <h4><%= entry["occurred_on"] %></h4>
   <p><%= entry["description"] %></p>
+  <% if entry.image.attached? %>
+    <%= image_tag entry.image, style: "max-width: 300px;" %>
+  <% end %>
 <% end %>
 
-<p>
-  <a href="/entries/new?place_id=<%= @place["id"] %>">New Entry</a>
-</p>
+<% if session["user_id"] != nil %>
+  <p>
+    <a href="/entries/new?place_id=<%= @place["id"] %>">New Entry</a>
+  </p>
+<% end %>
 
 <p>
   <a href="/places">Back to All Places</a>

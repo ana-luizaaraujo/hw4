@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Tacostagram Final</title>
+    <title>Travel Journal</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -13,11 +13,21 @@
     <div>
       <%= flash["notice"] %>
     </div>
+
     <div>
       <a href="/">Home</a>
-      <a href="/logout">Logout</a>
-      <a href="/login">Login</a>
-      <a href="/users/new">Signup</a>
+
+      <% if session["user_id"] != nil %>
+        |
+        Logged in as <%= User.find(session["user_id"]).username %>
+        |
+        <a href="/logout">Logout</a>
+      <% else %>
+        |
+        <a href="/login">Login</a>
+        |
+        <a href="/users/new">Signup</a>
+      <% end %>
     </div>
 
     <%= yield %>
